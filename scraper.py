@@ -3,7 +3,8 @@ import pandas as pd
 import time  # Import time module for adding delays
 
 # List of hashtags
-hashtags = ['news', 'burglary', 'terroristattack', 'fire', 'accident', 'war', 'riot', 'curfew', 'pandemic']
+#hashtags = ['news', 'burglary', 'terroristattack', 'fire', 'accident', 'war', 'riot', 'curfew', 'pandemic']
+username = ['alanhenney','OCCRP','NOELreports','CBSEveningNews','CrimeChatt','phivolcs_dost']
 
 # Initialize an empty list to store tweets
 all_tweets = []
@@ -12,12 +13,12 @@ all_tweets = []
 nitter_instance = "https://nitter.net"
 
 # Iterate over hashtags
-for hashtag in hashtags:
+for hashtag in username:
     # Initialize Nitter scraper
     scraper = Nitter(log_level=1)
 
     # Get tweets for the current hashtag using the specified instance
-    tweets = scraper.get_tweets(hashtag, mode="term", number=100, instance=nitter_instance)
+    tweets = scraper.get_tweets(hashtag, mode="user", number=100, instance=nitter_instance)
 
     # Extend the list of all_tweets with tweets for the current hashtag
     all_tweets.extend(tweets['tweets'])
@@ -29,4 +30,4 @@ for hashtag in hashtags:
 df = pd.DataFrame(all_tweets)
 
 # Save DataFrame to CSV file
-df.to_csv("dataset_1.csv", index=False)
+df.to_csv("dataset_crime_2.csv", index=False)
